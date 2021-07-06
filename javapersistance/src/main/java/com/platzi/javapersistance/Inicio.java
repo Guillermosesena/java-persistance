@@ -20,11 +20,11 @@ public class Inicio {
         do{
             System.out.println("----------------------");
             System.out.println("Aplicacion de mensajes");
-            System.out.println("1. Crear mensajes");
-            System.out.println("2. istar mensajes");
-            System.out.println("3. Editar mensajes");
-            System.out.println("4. Eliminar mensajes");
-            System.out.println("5. Salir");
+            System.out.println("1. Create message");
+            System.out.println("2. List messages");
+            System.out.println("3. Delete message");
+            System.out.println("4. Edit message");
+            System.out.println("5. Exit");
             
             opcion = sc.nextInt();
             
