@@ -41,7 +41,17 @@ public class MensajesService {
     }
     
     public static void editarMensaje(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Write the message again");
+        String mensaje = sc.nextLine();
         
+        System.out.println("Write the id of the message to update");
+       int id_mensaje = sc.nextInt();
+        
+        Mensajes actualizacion = new Mensajes();
+        actualizacion.setMensaje(mensaje);
+        actualizacion.setId_mensaje(id_mensaje);
+        MensajesDAO.actualizarMensajeDB(actualizacion);   
     }
     
 }
