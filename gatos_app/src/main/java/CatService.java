@@ -51,7 +51,7 @@ public class CatService {
             URL url = new URL(cats.getUrl());
             image = ImageIO.read(url);
             ImageIcon catBackground = new ImageIcon(image);
-            if(catBackground.getIconHeight() > 800 ){
+            if(catBackground.getIconHeight() > 700 ){
                 Image background = catBackground.getImage();
                 Image modified = background.getScaledInstance(800, 600, java.awt.Image.SCALE_SMOOTH);
                 catBackground = new ImageIcon(modified);
@@ -135,13 +135,67 @@ public class CatService {
         {
             int min=1;
             int max=catsArray.length;
-            int random = (int)(Math.random() * ((max-min)-1))+min;
+            int random = (int)(Math.random() * ((max-min)+1))+min;
             int index = random-1;
             
             FavoriteCats favCats = catsArray[index];
+            
+            
+            Image image = null;
+            try{
+               URL url = new URL(favCats.image.getUrl());
+               image = ImageIO.read(url);
+               ImageIcon catBackground = new ImageIcon(image);
+               if(catBackground.getIconHeight() > 700 ){
+                   Image background = catBackground.getImage();
+                   Image modified = background.getScaledInstance(800, 600, java.awt.Image.SCALE_SMOOTH);
+                   catBackground = new ImageIcon(modified);
+               }
+
+               String menu = "Options: \n" +
+                       "1. Watch another favorite \n" +
+                       "2. Delete Favorite \n" +
+                       "3. Back \n";
+               String[] buttons = {"Watch another favorite", "Delete favorite", "Back"};
+               String catId = favCats.getId();
+               String option = (String) JOptionPane.showInputDialog(null,menu,
+                           catId, JOptionPane.INFORMATION_MESSAGE,
+                           catBackground, buttons, buttons[0]);
+
+               int selectedOption = -1;
+
+               //Valid the option that user selects
+               for(int i=0; i < buttons.length; i++){
+                   if(option.equals(buttons[i])){
+                       selectedOption = i;
+                   }
+               }
+                switch(selectedOption){
+                       case 0:
+                           watchFavorites(apikey);
+                           break;
+                       case 1:
+                           deleteFavoriteCat(favCats);
+                           break;
+                       default:
+                           break;
+                   }
+
+           }catch(IOException e){
+               System.out.println(e);
+           }      
+
         }
         
     }
 
+    
+    
+    
+    public static void deleteFavoriteCat(FavoriteCats favCat){
+        
+    }
+    
+    
 }
 
