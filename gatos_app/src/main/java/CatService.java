@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -54,6 +55,36 @@ public class CatService {
             catBackground = new ImageIcon(modified);
         }
         
+        String menu = "Options: \n" +
+                "1. Watch another image \n" +
+                "2. Favorite \n" +
+                "3. Back \n";
+        String[] buttons = {"Watch another image", "Favorite", "Back"};
+        String catId = String.valueOf(cats.getId());
+        String option = (String) JOptionPane.showInputDialog(null,menu,
+                    catId, JOptionPane.INFORMATION_MESSAGE,
+                    catBackground, buttons, buttons[0]);
+        
+        int selectedOption = -1;
+        
+        //Valid the option that user selects
+        for(int i=0; i < buttons.length; i++){
+            if(option.equals(buttons[i])){
+                selectedOption = i;
+            }
+        }
+        
+         switch(selectedOption){
+                case 0:
+                    CatService.watchCats();
+                    break;
+                case 1:
+                    favoriteCat(cats);
+                    break;
+                default:
+                    break;
+            }
+        
     }catch(IOException e){
         System.out.println(e);
     }
@@ -61,4 +92,10 @@ public class CatService {
         
         
     }  
+
+    public static void favoriteCat(Cats cat){
+        
+    }
+
 }
+

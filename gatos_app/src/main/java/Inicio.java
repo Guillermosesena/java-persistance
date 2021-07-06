@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /*
@@ -12,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author g.sesena.pascacio
  */
 public class Inicio {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         int menuOption = -1;
         String[] buttons = {"1. Watch cats",
             "2. Exit"
