@@ -193,7 +193,17 @@ public class CatService {
     
     
     public static void deleteFavoriteCat(FavoriteCats favCat){
-        
+         try{
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("https://api.thecatapi.com/v1/favourites/"+favCat.getId())
+                    .delete(null)
+                    .addHeader("x-api-key", favCat.getApikey())
+                    .build();
+            Response response = client.newCall(request).execute();
+        }catch(IOException e){
+            System.out.println(e);
+        }
     }
     
     
