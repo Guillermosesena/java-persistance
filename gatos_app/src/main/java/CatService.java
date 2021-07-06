@@ -107,6 +107,41 @@ public class CatService {
             System.out.println(e);
         }
     }
+    
+    public static void watchFavorites(String apikey) throws IOException{
+        
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+        .url("https://api.thecatapi.com/v1/favourites")
+        .method("GET", null)
+        .addHeader("x-api-key", apikey)
+        .build();
+        
+        
+        Response response = client.newCall(request).execute();
+      
+        String json = response.body().string();
+
+        //Delete brackets
+        /*json = json.substring(1, json.length());//first
+        json = json.substring(0, json.length()-1);//last*/
+
+        //create json objetc
+        Gson gson = new Gson();
+        FavoriteCats[] catsArray = gson.fromJson(json, FavoriteCats[].class);
+        
+        if(catsArray.length > 0)
+        {
+            int min=1;
+            int max=catsArray.length;
+            int random = (int)(Math.random() * ((max-min)-1))+min;
+            int index = random-1;
+            
+            FavoriteCats favCats = catsArray[index];
+        }
+        
+    }
 
 }
 

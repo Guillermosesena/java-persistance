@@ -16,7 +16,8 @@ public class Inicio {
     public static void main(String[] args) throws IOException{
         int menuOption = -1;
         String[] buttons = {"1. Watch cats",
-            "2. Exit"
+            "2. Watch favorites",
+            "3. Exit"
         };
         do{
             //Menu main
@@ -34,6 +35,10 @@ public class Inicio {
             switch(menuOption){
                 case 0:
                     CatService.watchCats();
+                    break;
+                case 1:
+                    Cats cat = new Cats();
+                    CatService.watchFavorites(cat.getApikey());
                     break;
                 default:
                     break;
