@@ -9,10 +9,10 @@
  * @author g.sesena.pascacio
  */
 public class Cats {
-    String id;
-    String url;
-    String apikey = "270239e0-38ef-4346-b245-a188b1edb054";
-    String image;
+    private String id;
+    private String url;
+    private String apikey = "270239e0-38ef-4346-b245-a188b1edb054";
+    private String image;
 
     public String getId() {
         return id;
